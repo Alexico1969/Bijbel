@@ -3,7 +3,13 @@
 {% block content %}
   <div class=".grid-container">
     <div class="frozen_top">
-        <h3>Nieuwe Testament</h3>
+        <h3>
+            Nieuwe Testament
+            <div class="login-button-container">
+                <a class="login-button" href="/login">Login</a>
+            </div>
+        </h3>
+
         <h4>{{current_book}} &nbsp;&nbsp;&nbsp;
             {{chapters | safe}}
         </h4>

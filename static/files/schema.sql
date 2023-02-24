@@ -1,0 +1,6 @@
+CREATE TABLE if not EXISTS books (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    book TEXT NOT NULL,
+    chapter INTEGER NOT NULL
+);

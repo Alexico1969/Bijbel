@@ -1,0 +1,3 @@
+- Create a log in procedure
+- Create a way to remember where the reader left off
+- Improve mobile design

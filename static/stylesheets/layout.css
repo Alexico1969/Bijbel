@@ -107,3 +107,23 @@ a {
   background-color: #fcefdd;
   color: black;
 }
+
+.login-button-container {
+  float: right;
+  position: relative;
+  top: 10px;
+  
+}
+
+.login-button {
+  background-color: #f1f1f1;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 0;
+  cursor: pointer;
+}
