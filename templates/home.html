@@ -1,30 +1,49 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h3>Nieuwe Testament</h3>
-    <div class="dropdown">
-        <button class="dropbtn">Boek</button>
-        <div class="dropdown-content">
-            <form method="POST" action="{{ url_for('home_page') }}">
-                {% for book in books %}
-                    <button type="submit" name="book" value="{{book}}">{{book}}</button><br>
-                {% endfor %}
-            </form>
+  <div class=".grid-container">
+    <div class="frozen_top">
+        <h3>Nieuwe Testament</h3>
+        <h4>{{current_book}} &nbsp;&nbsp;&nbsp;
+            {{chapters | safe}}
+        </h4>
+        <div class="dropdown">
+            <button class="dropbtn">Boek</button>
+            <div class="dropdown-content">
+                <form method="POST" action="{{ url_for('home_page') }}">
+                    {% for book in books %}
+                        <button class="book_btn" type="submit" name="book" value="{{book}}">{{book}}</button><br>
+                    {% endfor %}
+                </form>
+            </div>
         </div>
-      </div>
-      
+
+    </div>
+
     <div class="container">
-        <h2>Text list</h2>
         {% for item in text_list %}
             <p>{{ item | safe }}</p>
         {% endfor %}
     </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
     <script>
+
     $(document).ready(function(){
+        
+
         console.log('--- js file loaded ---');
+
+
+        window.addEventListener('load', function() {
+            console.log("** CHECK **");
+        var section = document.querySelector('#section-id');
+        if (section !== null) {
+            window.scrollTo(0, section.offsetTop - 100);
+        }
+        });
 
         var content =  $.ajax({
             url: "https://api.nasa.gov/planetary/apod?api_key=VM2f40EQQ0tk58nvmPhpVa6gthc5ma6Chgll56N7",

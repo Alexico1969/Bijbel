@@ -1,4 +1,5 @@
-books = ["Matteus", "Markus", "Lukas", "Handelingen", "Romeinen", "1 Korintiers", "2 Korintiers", "Galaten", "Efeziers", "Filippenzen", "Kolossenzen", "1 Tessalonicenzen", "2 Tessalonicenzen", "1 Timoteus", "2 Timoteus", "Titus", "Filemon", "Hebreeen", "Jakobus", "1 Petrus", "2 Petrus", "1 Johannes", "2 Johannes", "3 Johannes", "Judas", "Openbaring"]
+books = ["Matteus", "Markus", "Lukas", "Handelingen", "Romeinen", "1 Korinthiers", "2 Korinthiers", "Galaten", "Efeziers", "Filippenzen", "Kolossenzen", "1 Tessalonicenzen", "2 Tessalonicenzen", "1 Timotheus", "2 Timotheus", "Titus", "Filemon", "Hebreeen", "Jakobus", "1 Petrus", "2 Petrus", "1 Johannes", "2 Johannes", "3 Johannes", "Judas", "Openbaring"]
+nr_of_chapters = [28, 16, 24, 21, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 22]
 
 def get_text():
     global books
@@ -25,22 +26,19 @@ def get_text():
                 
         line_list.append(line)
     
-    print(line_list[0:10])            
-
     counter = 0
 
     for line in line_list:
         if line in books:
             counter += 1
             book = line
-            print(f"Book: {book}")
+            print(f"Processing book {book}")
         else:
             if len(line) > 0:
+                line_split = line.split(" ")
+                if len(line_split) == 2 and line_split[0] == book:
+                    line = f"<h5 class='chapter' id='ch{line_split[1]}'>" + line + "</h5>"
                 NT_data[book].append(line)
 
-
-    print()        
-    print("Lukas, verse 1 - 10", NT_data["Lukas"][0:10])
-    print()
     return NT_data
 
