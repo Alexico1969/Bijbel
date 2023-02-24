@@ -1,7 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <h3>templates/home.html</h3>
+    <h3>Nieuwe Testament</h3>
+    <div class="dropdown">
+        <button class="dropbtn">Boek</button>
+        <div class="dropdown-content">
+            <form method="POST" action="{{ url_for('home_page') }}">
+                {% for book in books %}
+                    <button type="submit" name="book" value="{{book}}">{{book}}</button><br>
+                {% endfor %}
+            </form>
+        </div>
+      </div>
+      
+    <div class="container">
+        <h2>Text list</h2>
+        {% for item in text_list %}
+            <p>{{ item | safe }}</p>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block scripts %}
