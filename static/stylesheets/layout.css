@@ -127,3 +127,7 @@ a {
   margin: 8px 0;
   cursor: pointer;
 }
+
+.hidden{
+  display: none;
+}

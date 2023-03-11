@@ -31,6 +31,7 @@
             <p>{{ item | safe }}</p>
         {% endfor %}
     </div>
+    <div class="hidden" id="book" value="{{current_book}}">{{current_book}}</div>"
 </div>
 {% endblock %}
 
@@ -38,31 +39,42 @@
     <script>
 
     $(document).ready(function(){
+
+        const bookmark = localStorage.getItem('bookmark');
+		if (bookmark) {
+			window.location.hash = bookmark;
+            window.scrollTo(0, window.location.hash);
+		}
         
-
-        console.log('--- js file loaded ---');
-
-
         window.addEventListener('load', function() {
             console.log("** CHECK **");
-        var section = document.querySelector('#section-id');
-        if (section !== null) {
-            window.scrollTo(0, section.offsetTop - 100);
-        }
-        });
-
-        var content =  $.ajax({
-            url: "https://api.nasa.gov/planetary/apod?api_key=VM2f40EQQ0tk58nvmPhpVa6gthc5ma6Chgll56N7",
-            contentType: "application/json",
-            dataType: 'json',
-            success: function(result){
-                console.log(result);
+            var section = document.querySelector('#section-id');
+            if (section !== null) {
+                book = $("#book").val();
+                localStorage.setItem('book', book);
+                console.log(book);
+                window.scrollTo(0, section.offsetTop - 100);
             }
 
+            $(".chapter_btn").click(
+                function(){
+                    console.log("clicked");
+                    var chapter = $(this).text();
+                    localStorage.setItem('chapter', chapter);
+                    console.log("stored chapter: "+ chapter);
+                    const currentBookmark = window.location.hash;
+		            localStorage.setItem('bookmark', currentBookmark);
+                }
+            )
+            
+        });
 
 
-        })
-    })
+
+        });
+        
+
+
+    
     </script>
-    <script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
 {% endblock %}

@@ -19,23 +19,43 @@ def home_page():
     path_to_pdf = "static/files/Bijbel_01.pdf"
     nt_dict = get_text()
     current_book = "Matteus"
+    if 'userid' in session:
+        userid = session['userid']
+        if 'current_book' in session:
+            current_book = session['current_book']
+            print("Changed current book to: ", current_book, "based on login (session)")
 
 
     if request.method == 'POST':
         current_book = request.form['book']
-        print(current_book)  
+        print("Book clicked: ", current_book)
+        if 'userid' in session:
+            session['current_book'] = current_book
+        else:
+            print("All Keys:")
+            for key in session.keys():
+                print(f"{key}: {session[key]}")
+            
     
     text_list = nt_dict[current_book]
     current_nr_of_chapters = nr_of_chapters[books.index(current_book)]
     chapters = ""
     for i in range(1, current_nr_of_chapters+1):
-        chapters += f" <a href='#ch{i}'>{i}</a>"
+        chapters += f" <a href='#ch{i}'><span class='chapter_btn' value='{i}'>{i}</span></a>"
     return render_template('home.html', current_book=current_book, books=books, text_list=text_list, chapters=chapters)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-   return "login"
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if username == "Alex" and password == "qwerty":
+            session['userid'] = "Alex"
+            return redirect(url_for('home_page'))
+        else:
+            return redirect(url_for('login'))
+    return render_template('login.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
