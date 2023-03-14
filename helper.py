@@ -1,4 +1,4 @@
-books = ["Matteus", "Markus", "Lukas", "Handelingen", "Romeinen", "1 Korinthiers", "2 Korinthiers", "Galaten", "Efeziers", "Filippenzen", "Kolossenzen", "1 Tessalonicenzen", "2 Tessalonicenzen", "1 Timotheus", "2 Timotheus", "Titus", "Filemon", "Hebreeen", "Jakobus", "1 Petrus", "2 Petrus", "1 Johannes", "2 Johannes", "3 Johannes", "Judas", "Openbaring"]
+books = ["Matteus", "Markus", "Lukas", "Johannes", "Handelingen", "Romeinen", "1 Korinthiers", "2 Korinthiers", "Galaten", "Efeziers", "Filippenzen", "Kolossenzen", "1 Tessalonicenzen", "2 Tessalonicenzen", "1 Timotheus", "2 Timotheus", "Titus", "Filemon", "Hebreeen", "Jakobus", "1 Petrus", "2 Petrus", "1 Johannes", "2 Johannes", "3 Johannes", "Judas", "Openbaring"]
 nr_of_chapters = [28, 16, 24, 21, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 22]
 
 def get_text():
