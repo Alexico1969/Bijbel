@@ -5,9 +5,11 @@
     <div class="frozen_top">
         <h3>
             Nieuwe Testament
-            <div class="login-button-container">
+            {% if show_login_btn %}
                 <a class="login-button" href="/login">Login</a>
-            </div>
+            {% else %}
+                <a class="login-button" href="/logout">Logout</a>
+            {% endif %}
         </h3>
 
         <h4>{{current_book}} &nbsp;&nbsp;&nbsp;

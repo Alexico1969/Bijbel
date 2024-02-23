@@ -124,8 +124,10 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 8px 0;
+  margin: 8px 10px;
   cursor: pointer;
+  border-radius: 5px;
+  border: 3px black solid;
 }
 
 .hidden{

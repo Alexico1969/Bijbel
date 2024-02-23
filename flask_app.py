@@ -6,13 +6,14 @@ import sqlite3
 
 
 app=Flask(__name__, static_url_path='/static')
-
 app.secret_key = 'Bruce Wayne is Batman'
-
 init_db(app)
+
+show_login_btn = True
 
 @app.route('/', methods=['GET', 'POST'])
 def home_page():
+    global show_login_btn
     global books
     global nr_of_chapters
     path_to_pdf = url_for('static', filename='files/Bijbel_01.pdf')
@@ -38,20 +39,25 @@ def home_page():
             
     
     text_list = nt_dict[current_book]
+    print(f"Current book: {current_book}, text_list: {text_list}")
+
     current_nr_of_chapters = nr_of_chapters[books.index(current_book)]
     chapters = ""
     for i in range(1, current_nr_of_chapters+1):
         chapters += f" <a href='#ch{i}'><span class='chapter_btn' value='{i}'>{i}</span></a>"
-    return render_template('home.html', current_book=current_book, books=books, text_list=text_list, chapters=chapters)
+    return render_template('home.html', current_book=current_book, books=books, text_list=text_list, chapters=chapters, show_login_btn=show_login_btn, path_to_pdf=path_to_pdf)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global show_login_btn
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         if username == "Alex" and password == "qwerty":
             session['userid'] = "Alex"
+            show_login_btn = False
+            print("User logged in.")
             return redirect(url_for('home_page'))
         else:
             return redirect(url_for('login'))
@@ -63,7 +69,11 @@ def signup():
 
 @app.route('/logout')
 def logout():
+    print("User logged out.")
+    global show_login_btn
     session.pop('userid', None)
+    show_login_btn = True
+    
     return redirect(url_for('home_page'))
 
 
